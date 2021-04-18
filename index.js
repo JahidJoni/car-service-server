@@ -103,8 +103,14 @@ client.connect(err => {
       .toArray((err, admin) => {
         res.send(admin.length > 0);
       })
-
   })
+
+  app.delete("/delete/:id", (req, res)=>{
+    serviceCollection.deleteOne({_id: ObjectId(req.params.id)})
+    .then((result)=>{
+      res.send(result)
+    });
+  });
 
 });
 
